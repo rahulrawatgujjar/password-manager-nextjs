@@ -14,7 +14,7 @@ export async function POST(request) {
     // validations
     console.log(reqBody);
 
-    const user = User.findOne({ email });
+    const user = await User.findOne({ email });
 
     if (!user) {
       return NextResponse.json({
