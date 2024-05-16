@@ -18,9 +18,8 @@ export async function POST(request) {
 
     if (!user) {
       return NextResponse.json({
-        error: "User does not exist.",
-        status: 400
-      });
+        error: "User does not exist."
+      }, { status: 400 });
     }
     console.log("User exists:", user);
 
@@ -29,8 +28,7 @@ export async function POST(request) {
     if (!validPassword) {
       return NextResponse.json({
         error: "Check your credientials.",
-        status: 400
-      });
+      }, { status: 400 });
     }
 
     const tokenData = {
@@ -55,6 +53,6 @@ export async function POST(request) {
 
 
   } catch (error) {
-    return NextResponse.json({ error: error.message, status: 500 })
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
