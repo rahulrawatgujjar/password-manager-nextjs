@@ -13,7 +13,7 @@ export async function POST(request) {
     const user = await User.findOne({ verifyToken: token, verifyTokenExpiry: { $gt: Date.now() } })
 
     if (!user) {
-      return NextResponse.json({ error: "Invalid token", status: 400 })
+      return NextResponse.json({ error: "Invalid token" }, { status: 400 })
     }
     console.log(user)
 
@@ -31,6 +31,6 @@ export async function POST(request) {
 
 
   } catch (error) {
-    return NextResponse.json({ error: error.message, status: 500 })
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
