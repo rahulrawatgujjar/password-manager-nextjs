@@ -7,11 +7,20 @@ await connect()
 
 
 export async function GET(request) {
-  const userId= getDataFromToken(request);
-  const user = await User.findOne({_id:userId}).select("-password");
-  // check if no user
-  return NextResponse.json({
-    message: "User found",
-    data: user
-  })
+  try {
+    const userId = getDataFromToken(request);
+    const user = await User.findOne({ _id: userId }).select("-password");
+    // check if no user
+    return NextResponse.json({
+      message: "User found",
+      data: user
+    })
+  } catch (error) {
+    return NextResponse.json(
+      {
+        message: "There is some error in getting data.",
+      },
+      { status: 500 }
+    )
+  }
 }

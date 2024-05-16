@@ -31,6 +31,12 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
+    if (!user.isVerified) {
+      return NextResponse.json({
+        error: "Please verify the user.",
+      }, { status: 400 });
+    }
+
     const tokenData = {
       id: user._id,
       username: user.username,

@@ -26,7 +26,7 @@ const LoginPage = () => {
     } catch (error) {
       console.log("Login failed.");
       console.log(error.response.data)
-      toast.error(error.message);
+      toast.error(error.response.data.error);
     }
 
     setLoading(false);
