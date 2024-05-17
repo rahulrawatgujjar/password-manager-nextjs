@@ -25,7 +25,7 @@ const Manager = () => {
 
 
   const getPasswords = async () => {
-    const response = await fetch("http://localhost:3000/api/")
+    const response = await fetch("/api/")
     const responseData = await response.json()
     const passwords = responseData.data;
     // const passwords = await response.json()
@@ -61,7 +61,7 @@ const Manager = () => {
     if (form.site.length > 3 && form.username.length > 3 && form.password.length > 3) {
 
       // if we are editing then delete pre-existing data
-      await fetch("http://localhost:3000/api/", {
+      await fetch("/api/", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
@@ -73,7 +73,7 @@ const Manager = () => {
 
       const item = { ...form, id: uuidv4() }
 
-      await fetch("http://localhost:3000/api/", {
+      await fetch("/api/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -129,7 +129,7 @@ const Manager = () => {
     if (ready) {
       setPasswordArray(passwordArray.filter(item => item.id !== id));
       console.log("id to be deleted", id)
-      await fetch("http://localhost:3000/api/", {
+      await fetch("/api/", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
