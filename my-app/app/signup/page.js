@@ -4,6 +4,9 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import Background from '../components/Background';
 
 const signup = () => {
 
@@ -20,7 +23,7 @@ const signup = () => {
 
   const onSignup = async (evt) => {
     console.log(evt)
-    
+
     try {
       setLoading(true);
       const response = await axios.post("/api/users/signup", user)
@@ -50,23 +53,31 @@ const signup = () => {
 
 
   return (
-    <div className='container mx-auto p-3 min-h-[85vh] flex flex-col justify-center items-center'>
-      <h1 className='text-2xl font-bold my-2'>Signup Page</h1>
-      <div  className='flex flex-col gap-3 text-lg' >
-        <label htmlFor="username">Username:<br />
-          <input className='px-4 py-1 text-black rounded-full text-base' placeholder='Tony Stark' onChange={handleChange} type="text" value={user.username} name="username" />
-        </label>
-        <label htmlFor="email">Email:<br />
-          <input className='px-4 py-1 text-black rounded-full text-base' placeholder='tony@gmail.com' onChange={handleChange} type="text" value={user.email} name="email" />
-        </label>
-        <label htmlFor="password">Password:<br />
-          <input className='px-4 py-1 text-black rounded-full text-base' placeholder='' onChange={handleChange} type="text" value={user.password} name="password" />
-        </label>
-        <button disabled={buttonDisabled} className='bg-purple-500 rounded-full p-1 px-3 w-fit mx-auto disabled:bg-purple-400' onClick={onSignup}>Signup</button>
-        {loading && <div className='text-center'>processing...</div>}
-        <Link className='text-center hover:text-blue-500' href="/login">Vist login page</Link>
+    <>
+      <Navbar />
+      <div className='min-h-[calc(100vh-144.9px)]'>
+        <Background />
+        <div className='container mx-auto p-3 min-h-[60vh] flex flex-col justify-center items-center'>
+          <h1 className='text-3xl font-bold my-4 text-slate-800'>Signup Page</h1>
+          <div className='flex flex-col gap-5 text-lg' >
+            <label htmlFor="username">
+              <input className='text-base rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' placeholder='Enter your username' onChange={handleChange} type="text" value={user.username} name="username" />
+            </label>
+            <label htmlFor="email">
+              <input className='text-base rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' placeholder='Enter your email' onChange={handleChange} type="text" value={user.email} name="email" />
+            </label>
+            <label htmlFor="password">
+              <input className='text-base rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' placeholder='Enter your password' onChange={handleChange} type="text" value={user.password} name="password" />
+            </label>
+            <button disabled={buttonDisabled} className='bg-green-500 rounded-full p-1 px-3 w-fit mx-auto disabled:bg-green-400 border border-green-700 active:ring-1 ring-green-700 cursor-pointer' onClick={onSignup}>Signup</button>
+            {loading && <div className='text-center'>processing...</div>}
+            <Link className='text-center text-green-700 hover:text-blue-500 text-sm' href="/login">Vist login page</Link>
+          </div>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
+
   )
 }
 
