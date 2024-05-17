@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { v4 as uuidv4 } from 'uuid';
 import Typed from 'typed.js';
+import Image from 'next/image';
 
 
 const Manager = () => {
@@ -17,6 +18,9 @@ const Manager = () => {
   const [passwordArray, setPasswordArray] = useState([]);
 
   const passRef = useRef(null);
+
+  const [src, setSrc] = useState('/icons/visibility.png');
+  const [passType, setPassType] = useState("password")
 
 
 
@@ -36,12 +40,20 @@ const Manager = () => {
 
 
   const showPassword = () => {
-    if (eyeRef.current.src.includes("/icons/visibility.png")) {
-      eyeRef.current.src = "/icons/visibility_off.png"
-      passRef.current.type = "text"
+    console.log("show password")
+    console.log(eyeRef.current.src)
+    // if (eyeRef.current.src.includes("/icons/visibility.png")) {
+    if (src==="/icons/visibility.png") {
+      console.log("off")
+      // eyeRef.current.src = "/icons/visibility_off.png"
+      setSrc("/icons/visibility_off.png");
+      setPassType("text");
+      // passRef.current.type = "text"
     } else {
-      eyeRef.current.src = "/icons/visibility.png"
-      passRef.current.type = "password"
+      // eyeRef.current.src = "/icons/visibility.png"
+      setSrc("/icons/visibility.png");
+      setPassType("password")
+      // passRef.current.type = "password"
     }
   }
 
@@ -171,9 +183,9 @@ const Manager = () => {
           <div className='flex flex-col md:flex-row justify-between gap-8 w-full'>
             <input placeholder='Enter Username' className='rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' type="text" name="username" id="" value={form.username} onChange={handleChange} />
             <div className='relative w-full'>
-              <input ref={passRef} placeholder="Enter Password" className='rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' type="password" name="password" id="" value={form.password} onChange={handleChange} />
+              <input ref={passRef} placeholder="Enter Password" className='rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' type={passType} name="password" id="" value={form.password} onChange={handleChange} />
               <span className='absolute right-[5px] top-[5px] cursor-pointer' onClick={showPassword}>
-                <img ref={eyeRef} className='p-1' width={25} src="/icons/visibility.png" alt="eye" />
+                <Image ref={eyeRef} className='p-1' width={25} height={25} src={src} alt="eye" />
               </span>
             </div>
           </div>

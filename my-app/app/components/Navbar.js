@@ -18,7 +18,7 @@ const Navbar = () => {
     if (path === "/") {
       logoutBtnRef.current.style.display = "flex";
     }
-  }, [])
+  }, [path])
 
 
   const logout = async () => {

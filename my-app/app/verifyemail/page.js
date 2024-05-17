@@ -3,7 +3,6 @@ import { useSearchParams } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import { handleClientScriptLoad } from 'next/script';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Background from '../components/Background';
@@ -24,7 +23,7 @@ const VerifyEmailPage = () => {
     const decodedUrlToken = decodeURIComponent(urlToken);
     console.log("decodedUrlToken: ", decodedUrlToken)
     setToken(urlToken);
-  }, [])
+  }, [searchParams])
 
   const verifyUserEmail = async () => {
     try {
