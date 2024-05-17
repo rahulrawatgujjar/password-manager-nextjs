@@ -8,7 +8,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Background from '../components/Background';
 
-const signup = () => {
+const SignupPage = () => {
 
   const router = useRouter()
 
@@ -81,4 +81,4 @@ const signup = () => {
   )
 }
 
-export default signup
+export default SignupPage
