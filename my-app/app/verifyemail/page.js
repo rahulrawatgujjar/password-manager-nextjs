@@ -58,7 +58,7 @@ const VerifyEmailPage = () => {
         <div className='container mx-auto p-3 min-h-[60vh] flex flex-col justify-center items-center gap-3'>
           <h1 className='text-3xl font-bold my-4 text-slate-800'>Verify Email</h1>
           <div className='flex flex-col gap-5 p-5 m-1'>
-            <h2 className='text-xl bg-orange-400 text-black p-2 rounded-xl w-fit mx-auto'>
+            <h2 className='text-xl bg-green-200 text-black p-2 rounded-xl min-w-[300px] w-fit mx-auto break-all'>
               {token ? `${token}` : "no token"}
             </h2>
             <button onClick={handleClick} className='text-lg bg-green-500 rounded-full p-1 px-3 w-fit mx-auto disabled:bg-green-400 border border-green-700 active:ring-1 ring-green-700 cursor-pointer'>Click to verify</button>
