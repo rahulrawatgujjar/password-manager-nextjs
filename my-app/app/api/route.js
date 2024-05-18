@@ -3,6 +3,7 @@ import { connect } from '@/dbConfig/dbConfig';
 import { Password } from '@/models/passwordModel';
 import { getDataFromToken } from '@/helpers/getDataFromToken';
 import User from '@/models/userModel';
+import { encrypt, decrypt } from '@/helpers/cryptoUtils';
 
 
 await connect()
@@ -29,9 +30,21 @@ export async function GET(request) {
 
   const passwords = await Password.find({ userId });
   // res.json(passwords);
+  // return NextResponse.json({
+  //   data: passwords
+  // });
+
+  // Decrypt the passwords before sending them
+  const decryptedPasswords = passwords.map((passwordEntry) => ({
+    ...passwordEntry.toObject(),
+    password: decrypt(passwordEntry.encryptedPassword),
+    encryptedPassword: null
+  }));
+
   return NextResponse.json({
-    data: passwords
+    data: decryptedPasswords
   });
+
 }
 
 export async function POST(request) {
@@ -49,8 +62,9 @@ export async function POST(request) {
     )
   }
 
-  const password = await request.json();
-  const result = await Password.insertMany([{ ...password, userId:userId }])
+  const {username, site, password, id } = await request.json();
+  const encryptedPassword = encrypt(password)
+  const result = await Password.insertMany([{ id, username, site, encryptedPassword, userId: userId }])
   // res.send({success: true,result});
   return NextResponse.json({ success: true, result });
 }
