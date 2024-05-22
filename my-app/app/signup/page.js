@@ -14,6 +14,7 @@ const SignupPage = () => {
 
   const [user, setUser] = useState({
     username: "",
+    phone: "",
     email: "",
     password: ""
   });
@@ -62,6 +63,9 @@ const SignupPage = () => {
           <div className='flex flex-col gap-5 text-lg' >
             <label htmlFor="username">
               <input className='text-base rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' placeholder='Enter your username' onChange={handleChange} type="text" value={user.username} name="username" />
+            </label>
+            <label htmlFor="phone">
+              <input className='text-base rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' placeholder='Enter your phone number' onChange={handleChange} type="text" value={user.phone} name="phone" />
             </label>
             <label htmlFor="email">
               <input className='text-base rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' placeholder='Enter your email' onChange={handleChange} type="text" value={user.email} name="email" />

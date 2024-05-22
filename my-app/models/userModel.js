@@ -5,6 +5,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a username"]
   },
+  phone: {
+    type: String
+  },
   email: {
     type: String,
     required: [true, "Please provide a email"],
@@ -28,6 +31,6 @@ const userSchema = new mongoose.Schema({
   verifyTokenExpiry: Date
 });
 
-const User = mongoose.models.users || mongoose.model("users",userSchema)
+const User = mongoose.models.users || mongoose.model("users", userSchema)
 
 export default User;

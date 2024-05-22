@@ -9,7 +9,7 @@ await connect()
 export async function POST(request) {
   try {
     const reqBody = await request.json()
-    const { username, email, password } = reqBody;
+    const { username, email, password, phone } = reqBody;
     // validations
     console.log(reqBody)
 
@@ -24,9 +24,11 @@ export async function POST(request) {
 
     const newUser = new User({
       username,
+      phone,
       email,
       password: hashedPassword
     });
+    console.log("it is right")
 
     const savedUser = await newUser.save();
     console.log(savedUser);
