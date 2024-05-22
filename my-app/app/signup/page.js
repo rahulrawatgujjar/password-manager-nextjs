@@ -64,9 +64,9 @@ const SignupPage = () => {
             <label htmlFor="username">
               <input className='text-base rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' placeholder='Enter your username' onChange={handleChange} type="text" value={user.username} name="username" />
             </label>
-            <label htmlFor="phone">
+            {/* <label htmlFor="phone">
               <input className='text-base rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' placeholder='Enter your phone number' onChange={handleChange} type="text" value={user.phone} name="phone" />
-            </label>
+            </label> */}
             <label htmlFor="email">
               <input className='text-base rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' placeholder='Enter your email' onChange={handleChange} type="text" value={user.email} name="email" />
             </label>
