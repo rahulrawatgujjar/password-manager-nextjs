@@ -1,18 +1,31 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { connect } from '@/dbConfig/dbConfig';
 import { Password } from '@/models/passwordModel';
-import { getDataFromToken } from '@/helpers/getDataFromToken';
 import User from '@/models/userModel';
 import { encrypt, decrypt } from '@/helpers/cryptoUtils';
+import decryptToken from '@/helpers/whatsppCryptoUtils';
 
 
 await connect()
 
 export async function POST(request) {
   try {
-    const res = await request.json();
-    const wa_id = res.wa_id;
-    const siteUrl = res.site;
+    const { headers } = request;
+    const authorization = headers.get('Authorization');
+
+    if (!authorization || !authorization.startsWith('Bearer ')) {
+      return NextResponse.json({ message: 'No or invalid authorization token' }, { status: 401 });
+    }
+
+    const token = authorization.split(' ')[1];
+    const decryptedPayload = decryptToken(token);
+    const [wa_id, siteUrl] = decryptedPayload.split(':');
+
+    const data = await request.json();
+
+    if (data.wa_id !== wa_id || data.site !== siteUrl) {
+      return NextResponse.json({ error: 'Invalid token payload' }, { status: 400 });
+    }
 
     const userResponse = await User.findOne({ phone: wa_id }).select("_id")
     if (!userResponse) {
@@ -24,7 +37,7 @@ export async function POST(request) {
     if (!passResponse) {
       return NextResponse.json({ error: "Site not found" }, { status: 400 })
     }
-    const { username, site, encryptedPassword } = passResponse
+    const { username, site, encryptedPassword } = passResponse;
 
     const password = decrypt(encryptedPassword)
     return NextResponse.json({ username, site, password });

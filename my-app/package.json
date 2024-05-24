@@ -12,6 +12,7 @@
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "crypto": "^1.0.1",
+    "fernet-nodejs": "^1.0.6",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.4",
     "next": "14.2.3",
