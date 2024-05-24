@@ -11,7 +11,7 @@ export async function POST(request) {
     const reqBody = await request.json()
     const { username, email, password, phone } = reqBody;
     // validations
-    console.log(reqBody)
+    // console.log(reqBody)
 
     const user = await User.findOne({ email })
 
@@ -28,10 +28,10 @@ export async function POST(request) {
       email,
       password: hashedPassword
     });
-    console.log("it is right")
+    // console.log("it is right")
 
     const savedUser = await newUser.save();
-    console.log(savedUser);
+    // console.log(savedUser);
 
     // send Verification email
     await sendEmail({ email, emailType: "VERIFY", userId: savedUser._id });

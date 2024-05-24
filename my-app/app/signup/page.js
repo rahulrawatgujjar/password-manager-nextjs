@@ -23,12 +23,12 @@ const SignupPage = () => {
   const [loading, setLoading] = useState(false);
 
   const onSignup = async (evt) => {
-    console.log(evt)
+    // console.log(evt)
 
     try {
       setLoading(true);
       const response = await axios.post("/api/users/signup", user)
-      console.log("Signup success.", response.data);
+      // console.log("Signup success.", response.data);
       setLoading(false);
       router.push("/login")
 

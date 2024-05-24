@@ -19,9 +19,9 @@ const VerifyEmailPage = () => {
 
   useEffect(() => {
     const urlToken = searchParams.get("token");
-    console.log("urltoken:", urlToken)
+    // console.log("urltoken:", urlToken)
     const decodedUrlToken = decodeURIComponent(urlToken);
-    console.log("decodedUrlToken: ", decodedUrlToken)
+    // console.log("decodedUrlToken: ", decodedUrlToken)
     setToken(urlToken);
   }, [searchParams])
 
@@ -38,7 +38,7 @@ const VerifyEmailPage = () => {
   useEffect(() => {
     if (token.length > 0) {
       // verifyUserEmail();
-      console.log(token);
+      // console.log(token);
     }
   }, [token])
 

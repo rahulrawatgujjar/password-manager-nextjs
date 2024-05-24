@@ -11,7 +11,6 @@ export async function POST(request) {
   try {
     const { headers } = request;
     const authorization = headers.get('Authorization');
-    console.log("\nauthorization: ",authorization)
 
     if (!authorization || !authorization.startsWith('Bearer ')) {
       return NextResponse.json({ message: 'No or invalid authorization token' }, { status: 401 });
@@ -19,7 +18,7 @@ export async function POST(request) {
 
     const token = authorization.split(' ')[1];
     const decryptedPayload = decryptToken(token);
-    console.log("decrypted",decryptedPayload)
+
     const [wa_id, message] = decryptedPayload.split(':');
 
     const data = await request.json();

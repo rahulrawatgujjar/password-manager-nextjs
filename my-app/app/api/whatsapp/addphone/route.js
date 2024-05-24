@@ -11,10 +11,9 @@ export async function POST(request) {
     const reqBody = await request.json()
     const { phone } = reqBody;
     // validations
-    console.log(reqBody);
+    // console.log(reqBody);
 
     const userId = getDataFromToken(request);
-    console.log("line 42")
 
     const user = await User.findById(userId)
     if (!user) {
@@ -28,7 +27,7 @@ export async function POST(request) {
       )
     }
 
-    console.log("User exists:", user);
+    // console.log("User exists:", user);
 
     if (user.phone !== "") {
       return NextResponse.json(
@@ -48,8 +47,6 @@ export async function POST(request) {
     })
 
     return NextResponse.json({ success: true, message: "Phone number added." })
-
-
 
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })
