@@ -43,7 +43,7 @@ const Manager = () => {
     console.log("show password")
     console.log(eyeRef.current.src)
     // if (eyeRef.current.src.includes("/icons/visibility.png")) {
-    if (src==="/icons/visibility.png") {
+    if (src === "/icons/visibility.png") {
       console.log("off")
       // eyeRef.current.src = "/icons/visibility_off.png"
       setSrc("/icons/visibility_off.png");
@@ -172,12 +172,14 @@ const Manager = () => {
     <>
       <Background />
       <div className="p-5 pb-10 md:px-0 md:mycontainer">
-        <h1 className='text-4xl font-bold text-center'>
-          <span className='text-green-500'>&lt;</span>
-          <span>Pass</span>
-          <span className='text-green-500'>Mg/&gt;</span>
-        </h1>
-        <p className='text-lg text-green-900 text-center'><span ref={el} /></p>
+        <div className='py-3'>
+          <h1 className='text-2xl md:text-4xl font-bold text-center'>
+            <span className='text-green-500'>&lt;</span>
+            <span>Pass</span>
+            <span className='text-green-500'>Mg/&gt;</span>
+          </h1>
+          <p className='text-base md:text-lg text-green-900 text-center'><span ref={el} /></p>
+        </div>
         <div className='flex flex-col p-4 gap-8 items-center'>
           <input placeholder='Enter Website URL' className='rounded-full border border-green-500 p-4 py-1 w-full outline-none focus:outline-green-900 outline-offset-0' type="text" name="site" id="" value={form.site} onChange={handleChange} />
           <div className='flex flex-col md:flex-row justify-between gap-8 w-full'>
@@ -189,16 +191,18 @@ const Manager = () => {
               </span>
             </div>
           </div>
-          <button onClick={savePassword} className='bg-green-500 w-fit rounded-full px-8 py-2 flex items-center gap-2 hover:bg-green-400 border border-green-900'>
+          <button onClick={savePassword} className=' bg-green-500 w-fit rounded-full px-6 md:px-8 py-2 flex items-center gap-2 hover:bg-green-400 border border-green-900'>
             <lord-icon
               src="https://cdn.lordicon.com/jgnvfzqg.json"
-              trigger="hover">
+              trigger="hover"
+              style={{ "width": "25px", "height": "25px" }}
+            >
             </lord-icon>
             <span>Save</span>
           </button>
         </div>
         <div className="passwords mt-3">
-          <h2 className='text-2xl font-bold py-2'>Your Passwords</h2>
+          <h2 className='text-xl md:text-2xl font-bold py-2'>Your Passwords</h2>
           <div className="outter overflow-x-auto">
             {
               (passwordArray.length === 0) ? (<div>No passwords to show</div>) : (
@@ -281,7 +285,7 @@ const Manager = () => {
           </div>
 
         </div>
-      </div>
+      </div >
     </>
   )
 }

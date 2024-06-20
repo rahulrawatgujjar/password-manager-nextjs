@@ -8,7 +8,7 @@ const page = () => {
   return (
     <>
       <Navbar />
-      <div className='min-h-[calc(100vh-144.9px)]'>
+      <div className='min-h-[calc(100vh-216.9px)]'>
         <Manager />
       </div>
       <Footer />

@@ -56,7 +56,7 @@ const SignupPage = () => {
   return (
     <>
       <Navbar />
-      <div className='min-h-[calc(100vh-144.9px)]'>
+      <div className='min-h-[calc(100vh-216.9px)]'>
         <Background />
         <div className='container mx-auto p-3 min-h-[60vh] flex flex-col justify-center items-center'>
           <h1 className='text-3xl font-bold my-4 text-slate-800'>Signup Page</h1>
